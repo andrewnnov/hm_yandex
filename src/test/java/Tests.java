@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,8 +32,13 @@ public class Tests extends BaseTest {
         Thread.sleep(10000);
         yandexPageFactory.chooseProducer();
         Thread.sleep(10000);
-        yandexPageFactory.chooseFirstItem();
+        String first = yandexPageFactory.chooseFirstItem();
+        System.out.println(first);
+        yandexPageFactory.foundFirstItem();
+        Thread.sleep(10000);
+        String second = yandexPageFactory.chooseFirstItem();
+        System.out.println(second);
 
-        //yandexPageFactory.
+        Assertions.assertTrue(second.contains(first), "Значение не совпадает");
     }
 }

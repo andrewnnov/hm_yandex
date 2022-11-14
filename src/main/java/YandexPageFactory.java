@@ -37,6 +37,13 @@ public class YandexPageFactory {
     @FindBy(how = How.XPATH, xpath = "//div[@data-index]//h3")
     protected List<WebElement> listOfData;
 
+    @FindBy(how = How.XPATH, xpath = "//input[@id='header-search']")
+    protected WebElement searchField;
+
+    @FindBy(how = How.XPATH, xpath = "//button[@data-r='search-button']")
+    protected WebElement searchButton;
+
+
     public List<WebElement> getListOfData() {
         return listOfData;
     }
@@ -88,7 +95,17 @@ public class YandexPageFactory {
 
 
 
-    public void chooseFirstItem() {
-        getListOfData().forEach(x-> System.out.println(x.getText()));
+//    public void chooseFirstItem() {
+//        getListOfData().forEach(x-> System.out.println(x.getText()));
+//    }
+
+    public String chooseFirstItem() {
+        return listOfData.get(0).getText();
+    }
+
+    public void foundFirstItem() {
+        searchField.click();
+        searchField.sendKeys(chooseFirstItem());
+        searchButton.click();
     }
 }
